@@ -1,12 +1,25 @@
 #include "main.h"
 
 /**
+ *-putchar - writes the character c to stdout
+ * @c: The character to print.
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
+/**
 * *_strcat - function tha concatenate two strings
 * @dest : place where append de src string
 * @src: place of the string for append
 * Return: pointer to dest
 */
 
+<<<<<<< HEAD
 char* _strcat(char *dest, char *src)
 {
         int dest_length = 0, src_length = 0, i = 0;
@@ -33,6 +46,22 @@ char* _strcat(char *dest, char *src)
                 new_string[dest_length + i] = src[i];
                 i++;
         }
+=======
+*_strcat(char *dest, char *src)
+{
+	char *start = NULL;
+
+	if ((dest == NULL) && (src == NULL))
+		return (NULL);
+	start = dest;
+	while (*start != '\0')
+		start++;
+	while (*src != '\0')
+		*start++ = *src++;
+	*start = '\0';
+	return (dest);
+}
+>>>>>>> 3e736fd96780d6df7d50193902fc7f5ba4ef7d9f
 
         new_string[dest_length + i + 1] = '\0';
 
@@ -100,5 +129,45 @@ int _strncmp(const char s1[], const char s2[], size_t n)
 
 	}
 	return (c1 - c2);
+}
+
+/** 
+ * *_strcpy - return the copy pointed string por src
+ * @dest: copy source to here
+ * @src: source for copy
+ * Return: copy of src
+ */
+
+char *_strcpy(char *dest, char *src)
+{
+	int length = 0;
+	int i;
+
+	while (src[length] != '\0')
+		length++;
+
+	for (i = 0; i <= length; i++)
+		dest[i] = src[i];
+
+	return (dest);
+
+}
+
+/**
+* _strcmp - function that compares two strings
+* @s1 : number one to compare
+* @s2: number two to compare
+* Return: 0 is numbers are equal result of sustraction if not.
+*/
+
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 == *s2 && (*s1 != '\0' && *s2 != '\0'))
+	{
+		s1++;
+		s2++;
+	}
+
+	return (*s1 - *s2);
 }
 
