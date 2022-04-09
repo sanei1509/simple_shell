@@ -1,6 +1,23 @@
 #include "main.h"
 
 /**
+*count_spaces - count
+*
+*/
+
+int count_paths(char *aux_line)
+{
+	int i, cont = 0;
+
+	for (i = 0; aux_line[i] != '\0'; i++)
+	{
+		if (aux_line[i] == ':')
+		cont ++;
+	}
+	return (cont + 1);
+}
+
+/**
 **getenv . return the full content of environmennts var PATH
 *@var : string of the name of variable that we want get
 *@environ : list with the environments data
@@ -34,7 +51,7 @@ char **create_aux(char **aux1, char **env_aux)
 	int cont = 0, sizepath = 0;
 
 	path = _getenv(var, env_aux);
-	sizepath = count_spaces(path);
+	sizepath = count_paths(path);
 	aux1 = malloc(sizeof(char *) * sizepath + 1);
 	tokenized = strtok(path, ":");
 
