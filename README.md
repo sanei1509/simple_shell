@@ -15,18 +15,20 @@ To start the simple shell just need to write ./hsh
 ## Functions used
 
 ````c
+int  _putchar(char c);
 int  _strncmp(const  char s1[], const  char s2[], size_t n);
 char *_strcat(char *dest, char *src);
-int  count_paths(char *aux_line);
 int  _strcmp(char *s1, char *s2);
 int  _strlen(char *s);
+int  count_paths(char *aux_line);
 int  count_espacios(char *aux_line);
-int  getpadre_id(void);
-int  gethijo_id(void)
+int getpadre_id(void);
+int gethijo_id(void);
+void ctrl_c (int signal);
+char **return_env(char **environ);
 char *_getenv(char *var, char **environ);
 char **create_aux (char **aux1, char **env_aux);
-char *compare_path(char **array, char *cmd);
-char** parser_line(char **array, char * line);
+char* compare_path(char **array, char *cmd);
 ````
 
 ## Featutes
