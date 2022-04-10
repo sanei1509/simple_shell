@@ -54,4 +54,5 @@ $ env
 ## Authors
 This simple shell was create by:
 [Santiago Neira](https://github.com/sanei1509)
+and
 [Tarik Calixto](https://github.com/tarikaudi)
