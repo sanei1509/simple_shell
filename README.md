@@ -9,7 +9,8 @@ To compile our program we are using a **GNU Compiler Collection** (**GCC**) over
 ``` 
 gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
-To start the simple shell just need to write ./hsh
+To start the simple shell just need to write:
+./hsh
 ```
 
 ## Functions used
