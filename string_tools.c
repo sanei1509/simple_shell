@@ -1,12 +1,11 @@
 #include "main.h"
 
 /**
-**_strcat - function tha concatenate two strings
-* @dest : place where append de src string
-* @src: place of the string for append
-* Return: pointer to dest
+*_strcat - function tha concatenate two strings
+*@dest : place where append de src string
+*@src: place of the string for append
+*Return: pointer to dest
 */
-
 char *_strcat(char *dest, char *src)
 {
 	int dest_length = 0, src_length = 0, i = 0;
@@ -41,8 +40,8 @@ char *_strcat(char *dest, char *src)
 
 /**
 *_strlen - swaps the value of two integers
-* @s: The pointer value one
-* Return: c
+*@s: The pointer value one
+*Return: c
 */
 int _strlen(char *s)
 {
@@ -55,12 +54,11 @@ int _strlen(char *s)
 }
 
 /**
-*_strcmp- compare two strings
+*_strcmp - compare two strings
 *@s1: string one to compare
 *@s2: string two to compare
-* Return: 0 if strings are equal
+*Return: 0 if strings are equal
 */
-
 int _strcmp(char *s1, char *s2)
 {
 	while (*s1 == *s2 && (*s1 != '\0' && *s2 != '\0'))
@@ -73,33 +71,27 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
-*_strncmp- compare two strings n words
+*_strncmp - compare two strings n words
 * @s1: string one
 * @s2: string two
 * @n: number the strings to compare
-*Return: 0 if strings are equal <0 s1 less than str2 >0 s2 than s1
+* Return: 0 if strings are equal <0 s1 less than str2 >0 s2 than s1
 */
-
 int _strncmp(const char s1[], const char s2[], size_t n)
 {
-
 	unsigned char c1 = '\0';
 	unsigned char c2 = '\0';
 	int i;
 
 	for (i = 0; i < (int) n; i++)
 	{
-
 		c1 = (unsigned char) s1[i];
 		c2 = (unsigned char) s2[i];
 
 		if ((c1 == '\0') || (c1 != c2))
 		{
-
 			return (c1 - c2);
-
 		}
-
 	}
 	return (c1 - c2);
 }
@@ -110,7 +102,6 @@ int _strncmp(const char s1[], const char s2[], size_t n)
  * @src: source for copy
  * Return: copy of src
  */
-
 char *_strcpy(char *dest, char *src)
 {
 	int length = 0;
@@ -123,6 +114,4 @@ char *_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 
 	return (dest);
-
 }
-
