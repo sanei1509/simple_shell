@@ -164,15 +164,14 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			}
 			else
 			{
-				free(argv), free(line_read), line_read = NULL;
+				free(argv);
 				continue;
 			}
-			free(arr_paths);
 		}
 		clean_everything(line_read, argv);
-		free(arr_paths);
-		argv[0] = NULL;
 	}
-	clean_everything(line_read, argv);
+	free(argv);
+	free(line_read);
+	free(arr_paths);
 	return (0);
 }
