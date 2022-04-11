@@ -12,6 +12,16 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 To start the simple shell just need to write:
 ./hsh
 ```
+## Memory managment
+
+we try to adjust the memory usage as much as possible with the use of malloc, calloc, free.
+we use a debugging tool such as valgrind, with the following command:
+
+````c
+valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./name_of_executable_file
+
+````
+
 
 ## Functions used
 
