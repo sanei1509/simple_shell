@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- *count_espacios - function used to count the spaces
+ *count_espacios - function used to count the spaces changes
  *@aux_line: array that will be the base of
  *Return: return the count of spaces
  */
