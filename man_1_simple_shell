@@ -1,1 +1,46 @@
-Create manual for the use of our Shell program, the functioning, the command, the signals and others
+Man page for our simple shell.
+This simple shell was made by Tarik Calixto and Santiago Neira.
+
+This simple shell was a 12 days project made for HolbertonSchool 31/03/2022 to 11/04/2022 the objective of this project was to reproduce the actual shell but itis not as well optimizated.
+
+Our simple shell reads, interprets and executes a command with its full path or not.
+
+Our simple shell also work in non interacive way you just need to:
+without runing ./hsh write:
+echo "command -flag" | ./hsh
+
+To compile use:
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+To execute use:
+./hsh
+
+When the simple shell is up a $ will show up and will wait for the user to insert a command.
+
+$[command] -[flag]
+
+then press enter to execute.
+
+Builtins:
+
+exit - If user writes exit the simple shell will close.
+
+env - If user writes env all environment variables will be printed.
+
+ctrl C - If user press ctrl + C our simple shell won´t stop it will stil running waiting for another command as input.
+
+ctrl D - if user press ctrl + D our simple shell will close and user will be redirect to the main shell.
+
+Examples:
+
+$ ls will run the ls command and list all files in the directory user is in.
+
+$ ls /tmp will list all files from /tmp directory.
+
+$ pwd will print the working directory.
+
+$ /bin/ls -l will list all files with long format ($ ls -l will work as well).
+
+$ /bin/pwd will print working directory
+
+in the actual shell echo "ls" | ./hsh will work as well in non interactive way
