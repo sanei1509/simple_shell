@@ -12,6 +12,7 @@ char **parser_line(char **array, char *line)
 	char *token = NULL;
 
 	line = strtok(line, "\n");
+	line = strtok(line, "\t");
 	count_tokens = count_espacios(line);
 	array = calloc(count_tokens + 1, sizeof(char *));
 	token = strtok(line, " ");
