@@ -52,7 +52,7 @@ char **retur_env(char **environ)
 
 	for (; *s; s++)
 	{
-		printf("%s\n", *s);
+		/*printf("%s\n", *s);*/
 	}
 
 	return (0);
@@ -66,23 +66,23 @@ char **retur_env(char **environ)
 *Return: 0
 */
 
-char **create_aux(char **aux1, char **env_aux)
+char **create_aux(char **array_tokens, char **env_aux)
 {
 	char *tokenized = NULL, *var = "PATH", *path = NULL;
 	int cont = 0, sizepath = 0;
 
 	path = _getenv(var, env_aux);
 	sizepath = count_paths(path);
-	aux1 = malloc(sizeof(char *) * sizepath + 1);
+	array_tokens = malloc(sizeof(char *) * sizepath + 1);
 	tokenized = strtok(path, ":");
 
 	while (tokenized != NULL || cont < sizepath)
 	{
-		aux1[cont] = tokenized;
+		array_tokens[cont] = tokenized;
 		cont++;
 		tokenized = strtok(NULL, ":");
 	}
-	return (aux1);
+	return (array_tokens);
 }
 
 /**
@@ -105,6 +105,7 @@ char *compare_path(char **array, char *cmd)
 			return (path_cmd);
 		}
 	}
-
+	
+	free(array);
 	return (NULL);
 }
