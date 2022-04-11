@@ -99,9 +99,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 		if (line_read[0] == '\n')
 			continue;
 		if (bytes_read == -1 || line_read[0] == EOF)
-		{
 			break;
-		}
 		else
 		{
 			argv = parser_line(argv, line_read);
@@ -126,17 +124,20 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 					}
 					argv[0] = ret_pathcmd;
 					forkResultado = fork();
-					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) : (void) wait(NULL); continue;
+					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) :
+														(void) wait(NULL); continue;
 				}
 				else
 				{
 					forkResultado = fork();
-					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) : (void) wait(NULL); continue;
+					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) :
+														(void) wait(NULL); continue;
 				}
 			}
 			else
 			{
-				free(line_read), line_read = NULL; continue;
+				free(line_read), line_read = NULL;
+			       	continue;
 			}
 			free(arr_paths);
 		}
