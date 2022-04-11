@@ -73,7 +73,8 @@ char **create_aux(char **array_tokens, char **env_aux)
 
 	path = _getenv(var, env_aux);
 	sizepath = count_paths(path);
-	array_tokens = malloc(sizeof(char *) * sizepath + 1);
+	/*array_tokens = malloc(sizeof(char *) * sizepath + 1);*/
+	array_tokens = calloc(sizeof(char *), sizepath + 1);
 	tokenized = strtok(path, ":");
 
 	while (tokenized != NULL || cont < sizepath)
@@ -94,8 +95,10 @@ char **create_aux(char **array_tokens, char **env_aux)
 char *compare_path(char **array, char *cmd)
 {
 	struct stat buf;
-	char *str = _strcat("/", cmd), *path_cmd = NULL;
+	char *str = NULL, *path_cmd = NULL;
 	int i = 0;
+
+	str = _strcat("/", cmd);
 
 	for (i = 0; array[i]; i++)
 	{
@@ -106,6 +109,6 @@ char *compare_path(char **array, char *cmd)
 		}
 	}
 	
-	/*free(array);*/
+	free(str);
 	return (NULL);
 }
