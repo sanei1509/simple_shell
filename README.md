@@ -32,7 +32,7 @@ char **create_aux (char **aux1, char **env_aux);
 char* compare_path(char **array, char *cmd);
 ````
 
-## Featutes
+## Features
 - Execute the command without full path Ex: ls -l /tmp
 - Execute the command with full path Ex: /bin/ls -l /tmp
 - Ctrl D = End of file
