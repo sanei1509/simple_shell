@@ -54,15 +54,25 @@ char **parser_line(char **array, char *line)
  *@array: array with the full path concat
  *@env: env used
  */
-void execute_cmd(char *line, char *cmd, char **array, char **env)
+void execute_cmd(char *line, char *cmd, char **array, char **env, pid_t forkReturn)
 {
-	if ((execve(cmd, array, env) == -1))
+	if(forkReturn == 0)
 	{
-		free(line);
-		perror("Error");
-		exit(0);
+		if ((execve(cmd, array, env) == -1))
+		{
+			free(line);
+			perror("Error");
+			exit(0);
+		}
+	}
+	else
+	{
+		wait(NULL);
+		return;
 	}
 }
+
+
 
 /**
  *interactive_mode - shell with non interactive mode
@@ -123,26 +133,22 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 						continue;
 					}
 					argv[0] = ret_pathcmd;
-					forkResultado = fork();
-					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) :
-														(void) wait(NULL); continue;
+					forkResultado = fork(); 
+						execute_cmd(line_read, argv[0], argv, environ, forkResultado);
 				}
 				else
 				{
 					forkResultado = fork();
-					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) :
-														(void) wait(NULL); continue;
+						execute_cmd(line_read, argv[0], argv, environ, forkResultado);
 				}
 			}
 			else
 			{
-				free(line_read), line_read = NULL;
+				/*free(line_read), line_read = NULL;*/
 			       	continue;
 			}
-			free(arr_paths);
 		}
-		clean_everything(line_read, argv);
 	}
-	clean_everything(line_read, argv);
+	clean_everything(line_read, argv, argv[0]);
 	return (0);
 }
