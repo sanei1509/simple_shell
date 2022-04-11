@@ -52,7 +52,7 @@ char **retur_env(char **environ)
 
 	for (; *s; s++)
 	{
-		/*printf("%s\n", *s);*/
+		printf("%s\n", *s);
 	}
 
 	return (0);
