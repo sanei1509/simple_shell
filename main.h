@@ -31,7 +31,7 @@ char **retur_env(char **environ);
 char *_getenv(char *var, char **environ);
 char **create_aux(char **aux1, char **env_aux);
 char *compare_path(char **array, char *cmd);
-void clean_everything(char *line, char **array, char *cmd);
+void clean_everything(char *line, char **array);
 
 /*structuring*/
 char **parser_line(char **array, char *line);

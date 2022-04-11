@@ -5,12 +5,11 @@
 *@line: var to be freed
 *@array: array to be freed
 */
-void clean_everything(char *line, char **array, char *cmd)
+void clean_everything(char *line, char **array)
 {
 	free(line);
 	line = NULL;
 	free(array);
-	free(cmd);
 }
 
 /**
