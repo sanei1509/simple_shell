@@ -54,13 +54,12 @@ char **parser_line(char **array, char *line)
  *@array: array with the full path concat
  *@env: env used
  */
-void exe_path(char *line, char *cmd, char **array, char **env, pid_t forkReturn)
+void exe_path(char *cmd, char **array, char **env, pid_t forkReturn)
 {
 	if (forkReturn == 0)
 	{
 		if ((execve(cmd, array, env) == -1))
 		{
-			free(line);
 			perror("Error");
 			exit(0);
 		}
@@ -68,15 +67,6 @@ void exe_path(char *line, char *cmd, char **array, char **env, pid_t forkReturn)
 	else
 	{
 		wait(NULL);
-		return;
-	}
-}
-
-void val_retpath(char *comparepath_res)
-{
-	if (comparepath_res == NULL)
-	{
-		perror("Error");
 		return;
 	}
 }
@@ -101,13 +91,33 @@ void interactive_mode(void)
 		write(1, "$ ", 2);
 }
 
-void execute_cmd()
+void execute_cmd(char *cmd, char **arr_paths, pid_t fork_res, char **array, char word)
 {
-	if ((compare_path(arr_paths, argv[0])) == NULL)
+
+	if(_isalpha(word) == 1)
 	{
-		perror("Error");
-		continue;
-				}
+		if ((compare_path(arr_paths, cmd)) == NULL)
+		{
+			perror("Error");
+			return;
+		}
+		cmd = compare_path(arr_paths, cmd);
+		fork_res = fork();
+		printf("creando hijo\n");
+		if (fork_res == 0)
+		{
+			if ((execve(cmd, array, environ) == -1))
+			{
+				perror("Error");
+				exit(0);
+			}
+		}
+	}
+	else
+	{
+		wait (NULL);
+		return;
+	}
 }
 
 
@@ -121,8 +131,8 @@ void execute_cmd()
 */
 int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char **env)
 {
-	int bytes_read = 0; size_t size = 0; pid_t forkResultado = 0;
-	char *line_read = NULL, *ret_pathcmd = NULL, **argv = NULL, **arr_paths = NULL;
+	int bytes_read = 0; size_t size = 0; pid_t fork_res = 0;
+	char *line_read = NULL, **argv = NULL, **arr_paths = NULL;
 
 	arr_paths = create_aux(arr_paths, env);
 	while (1)
@@ -139,33 +149,28 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 		else
 		{
 			argv = parser_line(argv, line_read);
-			ret_pathcmd = compare_path(arr_paths, argv[0]);
 
 			if (line_read != NULL)
 			{
 				if ((_strcmp(argv[0], "exit") == 0) || (_strcmp(argv[0], "EOF") == 0))
 					break;
 				val_env_input(argv[0], environ);
-				if (_isalpha(argv[0][0]) == 1)
+
+				execute_cmd(argv[0], arr_paths, fork_res, argv, argv[0][0]);
+
+				if(_isalpha(argv[0][0]) != 1)
 				{
-					val_retpath(ret_pathcmd);
-					argv[0] = ret_pathcmd;
-					forkResultado = fork(); 
-						exe_path(line_read, argv[0], argv, environ, forkResultado);
-				}
-				else
-				{
-					forkResultado = fork();
-						exe_path(line_read, argv[0], argv, environ, forkResultado);
+					fork_res = fork();
+
+					printf("Creando hijo para ruta \n");
+						exe_path(argv[0], argv, environ, fork_res);
 				}
 			}
 			else
 			{
-				/*free(line_read), line_read = NULL;*/
 			       	continue;
 			}
 		}
 	}
-	/*clean_everything(line_read, argv, argv[0]);*/
 	return (0);
 }
