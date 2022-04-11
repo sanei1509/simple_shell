@@ -74,7 +74,7 @@ char **create_aux(char **array_tokens, char **env_aux)
 	path = _getenv(var, env_aux);
 	sizepath = count_paths(path);
 	/*array_tokens = malloc(sizeof(char *) * sizepath + 1);*/
-	array_tokens = calloc(sizeof(char *), sizepath + 1);
+	array_tokens = calloc(sizepath + 1, sizeof(char *));
 	tokenized = strtok(path, ":");
 
 	while (tokenized != NULL || cont < sizepath)
