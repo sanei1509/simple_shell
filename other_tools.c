@@ -57,7 +57,7 @@ int _isalpha(int c)
  */
 int getpadre_id(void)
 {
-	pid_t my_ppid;
+	pid_t my_ppid = 0;
 
 	my_ppid = getppid();
 	return (my_ppid);
@@ -69,7 +69,7 @@ int getpadre_id(void)
  */
 int gethijo_id(void)
 {
-	pid_t my_pid;
+	pid_t my_pid = 0;
 
 	my_pid = getpid();
 	return (my_pid);

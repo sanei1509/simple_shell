@@ -81,7 +81,7 @@ int _strncmp(const char s1[], const char s2[], size_t n)
 {
 	unsigned char c1 = '\0';
 	unsigned char c2 = '\0';
-	int i;
+	int i = 0;
 
 	for (i = 0; i < (int) n; i++)
 	{
@@ -105,7 +105,7 @@ int _strncmp(const char s1[], const char s2[], size_t n)
 char *_strcpy(char *dest, char *src)
 {
 	int length = 0;
-	int i;
+	int i = 0;
 
 	while (src[length] != '\0')
 		length++;

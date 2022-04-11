@@ -8,7 +8,7 @@
 
 int count_paths(char *aux_line)
 {
-	int i, cont = 0;
+	int i = 0, cont = 0;
 
 	for (i = 0; aux_line[i] != '\0'; i++)
 	{
