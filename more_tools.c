@@ -18,7 +18,7 @@ void interactive_mode(void)
 int count_espacios(char *aux_line)
 {
 	int s = 0;
-	char *aux = NULL, *copy_line = _strdup(aux_line);
+	char *aux = NULL, *copy_line = strdup(aux_line);
 
 	aux = strtok(copy_line, " ");
 

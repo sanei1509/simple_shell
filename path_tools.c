@@ -98,11 +98,11 @@ char *compare_path(char **array, char *cmd)
 	char *str = NULL, *path_cmd = NULL;
 	int i = 0;
 
-	str = _strcat("/", cmd);
+	str = strcat("/", cmd);
 
 	for (i = 0; array[i]; i++)
 	{
-		path_cmd = _strcat(array[i], str);
+		path_cmd = strcat(array[i], str);
 		if (stat(path_cmd, &buf) == 0)
 		{
 			return (path_cmd);
