@@ -147,12 +147,13 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			}
 			else
 			{
-				free(line_read), line_read = NULL; continue;
+				/*free(line_read), line_read = NULL; */
+				continue;
 			}
-			free(arr_paths);
+			/*free(arr_paths);*/
 		}
-		clean_everything(line_read, argv);
+		/*clean_everything(line_read, argv);*/
 	}
-	clean_everything(line_read, argv);
+	/*clean_everything(line_read, argv);*/
 	return (0);
 }
