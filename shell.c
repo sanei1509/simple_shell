@@ -80,6 +80,18 @@ void val_retpath(char *comparepath_res)
 		return;
 	}
 }
+
+void val_env_input(char *cmd, char **environ)
+{
+	if (_strcmp(cmd, "env") == 0)
+	{
+		retur_env(environ);
+		return;
+	}
+}
+
+ 
+
 /**
 *interactive_mode - shell with non interactive mode
  */
@@ -88,6 +100,17 @@ void interactive_mode(void)
 	if (isatty(STDIN_FILENO) == 1)
 		write(1, "$ ", 2);
 }
+
+void execute_cmd()
+{
+	if ((compare_path(arr_paths, argv[0])) == NULL)
+	{
+		perror("Error");
+		continue;
+				}
+}
+
+
 
 /**
 *main - take the input command of the user
@@ -109,7 +132,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 
 		bytes_read = getline(&line_read, &size, stdin);
 
-		if (line_read[0] == '\n')
+		if (line_read[0] == '\n' || line_read[0] == '\t')
 			continue;
 		if (bytes_read == -1 || line_read[0] == EOF)
 			break;
@@ -122,12 +145,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			{
 				if ((_strcmp(argv[0], "exit") == 0) || (_strcmp(argv[0], "EOF") == 0))
 					break;
-				if (_strcmp(argv[0], "env") == 0)
-				{
-					retur_env(environ);
-					continue;
-				}
-
+				val_env_input(argv[0], environ);
 				if (_isalpha(argv[0][0]) == 1)
 				{
 					val_retpath(ret_pathcmd);
