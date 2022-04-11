@@ -137,23 +137,39 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 					}
 					argv[0] = ret_pathcmd;
 					forkResultado = fork();
-					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) : (void) wait(NULL); continue;
+					if (forkResultado == 0)
+					{
+						execute_cmd(line_read, argv[0], argv, environ);
+					}
+					else
+					{
+						wait(NULL);
+						continue;
+					}
 				}
 				else
 				{
 					forkResultado = fork();
-					(forkResultado == 0) ? execute_cmd(line_read, argv[0], argv, environ) : (void) wait(NULL); continue;
+					if (forkResultado == 0)
+					{
+						execute_cmd(line_read, argv[0], argv, environ);
+					}
+					else
+					{
+						wait(NULL);
+						continue;
+					}
 				}
 			}
 			else
 			{
-				/*free(line_read), line_read = NULL; */
+				free(line_read), line_read = NULL;
 				continue;
 			}
-			/*free(arr_paths);*/
+			free(arr_paths);
 		}
-		/*clean_everything(line_read, argv);*/
+		clean_everything(line_read, argv);
 	}
-	/*clean_everything(line_read, argv);*/
+	clean_everything(line_read, argv);
 	return (0);
 }
