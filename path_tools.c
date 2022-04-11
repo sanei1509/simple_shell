@@ -106,6 +106,6 @@ char *compare_path(char **array, char *cmd)
 		}
 	}
 	
-	free(array);
+	/*free(array);*/
 	return (NULL);
 }
