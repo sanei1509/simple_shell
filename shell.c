@@ -54,9 +54,9 @@ char **parser_line(char **array, char *line)
  *@array: array with the full path concat
  *@env: env used
  */
-void execute_cmd(char *line, char *cmd, char **array, char **env, pid_t forkReturn)
+void exe_path(char *line, char *cmd, char **array, char **env, pid_t forkReturn)
 {
-	if(forkReturn == 0)
+	if (forkReturn == 0)
 	{
 		if ((execve(cmd, array, env) == -1))
 		{
@@ -72,10 +72,16 @@ void execute_cmd(char *line, char *cmd, char **array, char **env, pid_t forkRetu
 	}
 }
 
-
-
+void val_retpath(char *comparepath_res)
+{
+	if (comparepath_res == NULL)
+	{
+		perror("Error");
+		return;
+	}
+}
 /**
- *interactive_mode - shell with non interactive mode
+*interactive_mode - shell with non interactive mode
  */
 void interactive_mode(void)
 {
@@ -92,11 +98,8 @@ void interactive_mode(void)
 */
 int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char **env)
 {
-	int bytes_read = 0;
-	size_t size = 0;
-	char *line_read = NULL, *ret_pathcmd = NULL;
-	char **argv = NULL, **arr_paths = NULL;
-	pid_t forkResultado = 0;
+	int bytes_read = 0; size_t size = 0; pid_t forkResultado = 0;
+	char *line_read = NULL, *ret_pathcmd = NULL, **argv = NULL, **arr_paths = NULL;
 
 	arr_paths = create_aux(arr_paths, env);
 	while (1)
@@ -127,19 +130,15 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 
 				if (_isalpha(argv[0][0]) == 1)
 				{
-					if (ret_pathcmd == NULL)
-					{
-						perror("Error");
-						continue;
-					}
+					val_retpath(ret_pathcmd);
 					argv[0] = ret_pathcmd;
 					forkResultado = fork(); 
-						execute_cmd(line_read, argv[0], argv, environ, forkResultado);
+						exe_path(line_read, argv[0], argv, environ, forkResultado);
 				}
 				else
 				{
 					forkResultado = fork();
-						execute_cmd(line_read, argv[0], argv, environ, forkResultado);
+						exe_path(line_read, argv[0], argv, environ, forkResultado);
 				}
 			}
 			else
@@ -149,6 +148,6 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			}
 		}
 	}
-	clean_everything(line_read, argv, argv[0]);
+	/*clean_everything(line_read, argv, argv[0]);*/
 	return (0);
 }
