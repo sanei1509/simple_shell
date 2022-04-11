@@ -1,5 +1,36 @@
 #include "main.h"
 
+
+/**
+ *interactive_mode - shell with non interactive mode
+ */
+void interactive_mode(void)
+{
+	if (isatty(STDIN_FILENO) == 1)
+		write(1, "$ ", 2);
+}
+
+/**
+ *count_espacios - function used to count the spaces changes
+ *@aux_line: array that will be the base of
+ *Return: return the count of spaces
+ */
+int count_espacios(char *aux_line)
+{
+	int s = 0;
+	char *aux, *copy_line = strdup(aux_line);
+
+	aux = strtok(copy_line, " ");
+
+	while (aux != NULL)
+	{
+		s++;
+		aux = strtok(NULL, " ");
+	}
+
+	return (s);
+}
+
 /**
 *clean_everything - function to clear every var
 *@line: var to be freed

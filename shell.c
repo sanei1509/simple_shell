@@ -1,27 +1,6 @@
 #include "main.h"
 
 /**
- *count_espacios - function used to count the spaces changes
- *@aux_line: array that will be the base of
- *Return: return the count of spaces
- */
-int count_espacios(char *aux_line)
-{
-	int s = 0;
-	char *aux, *copy_line = strdup(aux_line);
-
-	aux = strtok(copy_line, " ");
-
-	while (aux != NULL)
-	{
-		s++;
-		aux = strtok(NULL, " ");
-	}
-
-	return (s);
-}
-
-/**
  *parser_line - function to parse the array
  *@array: the array charged with path
  *@line: line line
@@ -48,11 +27,11 @@ char **parser_line(char **array, char *line)
 }
 
 /**
- *execute_cmd - function that executes the commands
- *@line: line line
+ *exe_path - function that executes the commands
  *@cmd: command to be executed
  *@array: array with the full path concat
  *@env: env used
+ *@forkReturn: Return of the fork born
  */
 void exe_path(char *cmd, char **array, char **env, pid_t forkReturn)
 {
@@ -71,6 +50,12 @@ void exe_path(char *cmd, char **array, char **env, pid_t forkReturn)
 	}
 }
 
+/**
+ *val_env_input - when receive "env"
+ *@cmd: first token received
+ *@environ: receive all the var paths
+ */
+
 void val_env_input(char *cmd, char **environ)
 {
 	if (_strcmp(cmd, "env") == 0)
@@ -80,7 +65,13 @@ void val_env_input(char *cmd, char **environ)
 	}
 }
 
- 
+/**
+ *execute_cmd - execute cmd
+ *@line: receive the read line
+ *@cmd: first token
+ *@array: array of tokens the line read
+ *@env: all the variables
+ */
 
 void execute_cmd(char *line, char *cmd, char **array, char **env)
 {
@@ -92,14 +83,6 @@ void execute_cmd(char *line, char *cmd, char **array, char **env)
 	}
 }
 
-/**
- *interactive_mode - shell with non interactive mode
- */
-void interactive_mode(void)
-{
-	if (isatty(STDIN_FILENO) == 1)
-		write(1, "$ ", 2);
-}
 
 /**
 *main - take the input command of the user

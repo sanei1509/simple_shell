@@ -22,6 +22,7 @@ char *_strdup(char *str);
 
 int count_paths(char *aux_line);
 int count_espacios(char *aux_line);
+void interactive_mode(void);
 
 int getpadre_id(void);
 int gethijo_id(void);
