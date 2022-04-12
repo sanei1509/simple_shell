@@ -109,8 +109,9 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 
 		if (line_read[0] == '\n')
 			continue;
-		if (bytes_read == -1 || line_read[0] == EOF)
+		if (bytes_read == -1)
 		{
+			write(1, "\n", 1);
 			break;
 		}
 		else
