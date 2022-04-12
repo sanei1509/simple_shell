@@ -43,7 +43,6 @@ char *_getenv(char *var, char **enviro)
 
 /**
  *retur_env - return all environment variables
- *@environ: variable that stores all environment variables
  *Return: 0
 */
 int retur_env(void)

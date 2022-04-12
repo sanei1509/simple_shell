@@ -111,9 +111,6 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 				if (_strcmp(argv[0], "env") == 0)
 				{
 					retur_env();
-					/**free(ret_pathcmd);
-					free(argv);
-					continue;*/
 				}
 
 				if (_isalpha(argv[0][0]) == 1)
