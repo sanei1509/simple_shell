@@ -111,7 +111,6 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			continue;
 		if (bytes_read == -1)
 		{
-			write(1, "\n", 1);
 			break;
 		}
 		else
