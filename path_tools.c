@@ -54,15 +54,14 @@ char **retur_env(char **environ)
 	{
 		printf("%s\n", *s);
 	}
-
 	return (0);
 }
 
 
 /**
 ***create_aux - take a empty array to fill with the paths
-*@aux1 : empty array from main function
-*@env_aux : complete list of environments
+*@array_tokens: empty array from main function
+*@env_aux: complete list of environments
 *Return: 0
 */
 
@@ -109,7 +108,7 @@ char *compare_path(char **array, char *cmd)
 		}
 		free(path_cmd);
 	}
-	
+
 	free(str);
 	return (NULL);
 }
