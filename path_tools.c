@@ -46,14 +46,19 @@ char *_getenv(char *var, char **enviro)
  *@environ: variable that stores all environment variables
  *Return: 0
 */
-char **retur_env(char **environ)
+int retur_env(void)
 {
-	char **s = environ;
+	unsigned int i = 0, j = 0;
 
-	for (; *s; s++)
+	for (i = 0; environ[i] != NULL; i++)
 	{
-		printf("%s\n", *s);
+		write(1, environ[j], _strlen(environ[j]));
+		_putchar('\n');
+
+		j++;
 	}
+
+
 	return (0);
 }
 
@@ -108,7 +113,6 @@ char *compare_path(char **array, char *cmd)
 		}
 		free(path_cmd);
 	}
-
 	free(str);
 	return (NULL);
 }

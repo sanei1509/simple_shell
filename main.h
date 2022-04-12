@@ -29,7 +29,7 @@ int getpadre_id(void);
 int gethijo_id(void);
 void ctrl_c(int signal);
 
-char **retur_env(char **environ);
+int retur_env(void);
 char *_getenv(char *var, char **environ);
 char **create_aux(char **aux1, char **env_aux);
 char *compare_path(char **array, char *cmd);

@@ -51,21 +51,6 @@ void exe_path(char *cmd, char **array, char **env, pid_t forkReturn)
 }
 
 /**
- *val_env_input - when receive "env"
- *@cmd: first token received
- *@environ: receive all the var paths
- */
-
-void val_env_input(char *cmd, char **environ)
-{
-	if (_strcmp(cmd, "env") == 0)
-	{
-		retur_env(environ);
-		return;
-	}
-}
-
-/**
  *execute_cmd - execute cmd
  *@line: receive the read line
  *@cmd: first token
@@ -122,12 +107,13 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			{
 				if ((_strcmp(argv[0], "exit") == 0) || (_strcmp(argv[0], "EOF") == 0))
 					break;
+
 				if (_strcmp(argv[0], "env") == 0)
 				{
-					retur_env(environ);
-					free(ret_pathcmd);
+					retur_env();
+					/**free(ret_pathcmd);
 					free(argv);
-					continue;
+					continue;*/
 				}
 
 				if (_isalpha(argv[0][0]) == 1)
