@@ -23,7 +23,6 @@ char **parser_line(char **array, char *line)
 		token = strtok(NULL, " ");
 		i++;
 	}
-
 	return (array);
 }
 
@@ -157,6 +156,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 					}
 					else
 					{
+						free(argv);
 						wait(NULL);
 						continue;
 					}
@@ -168,7 +168,6 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 				continue;
 			}
 		}
-		clean_everything(line_read, argv);
 	}
 	free(argv);
 	free(line_read);
