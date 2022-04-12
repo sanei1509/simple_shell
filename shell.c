@@ -126,6 +126,8 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 				if (_strcmp(argv[0], "env") == 0)
 				{
 					retur_env(environ);
+					free(ret_pathcmd);
+					free(argv);
 					continue;
 				}
 
