@@ -91,8 +91,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 		interactive_mode();
 
 		bytes_read = getline(&line_read, &size, stdin);
-
-		if (line_read[0] == '\n')
+		if(line_read[0] == '\n')
 			continue;
 		if (bytes_read == -1)
 		{
@@ -107,7 +106,6 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			{
 				if ((_strcmp(argv[0], "exit") == 0) || (_strcmp(argv[0], "EOF") == 0))
 					break;
-
 				if (_strcmp(argv[0], "env") == 0)
 				{
 					retur_env();

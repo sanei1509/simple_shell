@@ -57,7 +57,6 @@ int retur_env(void)
 		j++;
 	}
 
-
 	return (0);
 }
 
@@ -108,6 +107,7 @@ char *compare_path(char **array, char *cmd)
 		path_cmd = _strcat(array[i], str);
 		if (stat(path_cmd, &buf) == 0)
 		{
+			free(str);
 			return (path_cmd);
 		}
 		free(path_cmd);
