@@ -107,7 +107,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			if (line_read != NULL)
 			{
 				if ((_strcmp(argv[0], "exit") == 0) || (_strcmp(argv[0], "EOF") == 0))
-					break;
+					exit (2);
 				if (_strcmp(argv[0], "env") == 0)
 				{
 					retur_env();
