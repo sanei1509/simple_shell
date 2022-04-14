@@ -15,7 +15,7 @@ int count_paths(char *aux_line)
 		if (aux_line[i] == ':')
 			cont++;
 	}
-	return (cont + 1);
+	return (cont);
 }
 
 /**
