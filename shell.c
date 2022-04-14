@@ -88,7 +88,9 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 	while (1)
 	{
 		signal(SIGINT, ctrl_c);
-		interactive_mode();
+
+		if (isatty(STDIN_FILENO) == 1)
+			write(1, "$ ", 2);
 
 		bytes_read = getline(&line_read, &size, stdin);
 		if(line_read[0] == '\n')
@@ -127,7 +129,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 					else
 					{
 						free(ret_pathcmd);
-						free(argv);
+						/*free(argv);*/
 						wait(NULL);
 						continue;
 					}
