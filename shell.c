@@ -78,7 +78,7 @@ void execute_cmd(char *line, char *cmd, char **array, char **env)
 */
 int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char **env)
 {
-	int bytes_read = 0;
+	int bytes_read = 0, status = 0;
 	size_t size = 0;
 	char *line_read = NULL, *ret_pathcmd = NULL;
 	char **argv = NULL, **arr_paths = NULL;
@@ -107,7 +107,10 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			if (line_read != NULL)
 			{
 				if ((_strcmp(argv[0], "exit") == 0) || (_strcmp(argv[0], "EOF") == 0))
-					exit (2);
+				{
+					free(argv);
+					break;
+				}
 				if (_strcmp(argv[0], "env") == 0)
 				{
 					retur_env();
@@ -143,7 +146,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 					}
 					else
 					{
-						wait(NULL);
+						wait(&status);
 						free(argv);
 						continue;
 					}
@@ -160,5 +163,5 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 	free(line_read);
 	free(arr_paths);
 	/*free(argv);*/
-	return (0);
+	return (WEXITSTATUS(status));
 }
