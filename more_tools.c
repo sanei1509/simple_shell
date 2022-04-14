@@ -13,7 +13,7 @@ int validate_input(char *line)
 	{
 		if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
 			return (-1);
-		
+	
 		i++;
 	}
 	return (0);
