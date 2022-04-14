@@ -12,10 +12,10 @@ int count_paths(char *aux_line)
 
 	for (i = 0; aux_line[i] != '\0'; i++)
 	{
-		if (aux_line[i] == ':')
+		if (aux_line[i] == 58)
 			cont++;
 	}
-	return (cont);
+	return (cont + 1);
 }
 
 /**
@@ -47,14 +47,14 @@ char *_getenv(char *var, char **enviro)
 */
 int retur_env(void)
 {
-	unsigned int i = 0, j = 0;
+	unsigned int i = 0;
 
-	for (i = 0; environ[i] != NULL; i++)
+	while (environ[i])
 	{
-		write(1, environ[j], _strlen(environ[j]));
+		write(1, environ[i], _strlen(environ[i]));
 		_putchar('\n');
 
-		j++;
+		i++;
 	}
 
 	return (0);

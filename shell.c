@@ -143,8 +143,8 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 					}
 					else
 					{
-						free(argv);
 						wait(NULL);
+						free(argv);
 						continue;
 					}
 				}
@@ -156,8 +156,9 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			}
 		}
 	}
-	free(argv);
+	/*free(argv);*/
 	free(line_read);
 	free(arr_paths);
+	/*free(argv);*/
 	return (0);
 }
