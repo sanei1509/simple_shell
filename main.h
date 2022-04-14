@@ -38,6 +38,8 @@ void clean_everything(char *line, char **array);
 /*structuring*/
 char **parser_line(char **array, char *line);
 
+/*second chance*/
+int validate_input(char *line);
 
 
 

@@ -1,5 +1,23 @@
 #include "main.h"
 
+/**
+*validate_spaces - when is space, tab or enter
+*@line: linea leida
+*Return: succes(0) or fail(1)
+*/
+int validate_input(char *line)
+{
+	int i = 0;
+
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
+			return (-1);
+		
+		i++;
+	}
+	return (0);
+}
 
 /**
  *interactive_mode - shell with non interactive mode

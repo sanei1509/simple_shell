@@ -93,7 +93,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 			write(1, "$ ", 2);
 
 		bytes_read = getline(&line_read, &size, stdin);
-		if(line_read[0] == '\n')
+		if (validate_input(line_read) == 0)
 			continue;
 		if (bytes_read == -1)
 		{
