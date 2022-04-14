@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-*validate_spaces - when is space, tab or enter
+*validate_input - when is space, tab or enter
 *@line: linea leida
 *Return: succes(0) or fail(1)
 */
