@@ -132,7 +132,7 @@ int main(int __attribute__((unused)) ac, char __attribute__((unused)) **av, char
 					else
 					{
 						free(ret_pathcmd);
-						/*free(argv);*/
+						free(argv);
 						wait(NULL);
 						continue;
 					}
